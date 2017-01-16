@@ -17,13 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow()
-        window?.backgroundColor = UIColor.white
-        window?.rootViewController = YWTabBarViewController()
-        window?.makeKeyAndVisible()
+        window = UIWindow(frame:UIScreen.main.bounds)
+        window!.backgroundColor = UIColor.white
+        window!.rootViewController = YWTabBarViewController()
+        window!.makeKeyAndVisible()
         //应用程序额外设置
         steupAdditions()
-        
+        //设置推送
+        setupNotification()
         
         let lab = YWFPSLabel(frame: CGRect())
         UIApplication.shared.keyWindow!.addSubview(lab)
@@ -53,9 +54,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("deviceToken = " + String(data: deviceToken, encoding: .utf8)!)
+    }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("didReceiveRemoteNotification:\(userInfo)")
+    }
 }
-
+//MARK:- notification
+extension AppDelegate {
+    func setupNotification() {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (sucess, error) in
+                print(sucess ? "成功" : error as Any)
+            })
+        } else {
+            let setting = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(setting)
+        }
+    }
+}
 
 extension AppDelegate {
     
@@ -64,16 +83,6 @@ extension AppDelegate {
         SVProgressHUD.setMinimumDismissTimeInterval(1)
         //2.设置网络加载指示器
         AFNetworkActivityIndicatorManager.shared().isEnabled = true
-        //3.设置用户授权显示通知
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound,.carPlay ]) { (success, error) in
-                print("用户授权显示通知" + (success ? "成功" : "失败"))
-            }
-        } else {
-            //10.0之前旧版本  获取用户授权显示通知（上方的提示条、声音、BadgeNumber）
-            let notifySettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(notifySettings)
-        }
     }
     
 }

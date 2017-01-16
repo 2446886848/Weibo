@@ -24,10 +24,10 @@ let KPassword = ""
 
 //MARK: - 全局通知定义
 /// 用户需要登录通知
-let YWUserShouldLoginNotification = "YWUserShouldLoginNotification"
+//let YWUserShouldLoginNotification = "YWUserShouldLoginNotification"
 
 /// 成功登录通知
-let YWuserLoginSuccessedNotification = "YWuserLoginSuccessedNotification"
+//let YWuserLoginSuccessedNotification = "YWuserLoginSuccessedNotification"
 
 
 //MARK: - 微博配图视图常量

@@ -54,7 +54,7 @@ class YWNetworkManager: AFHTTPSessionManager {
         //处理 token 字典 程序执行过程中 一般 token 不会为nil 
         guard let token = userAccount.access_token else {
             //没有token 需要重新登录
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: YWUserShouldLoginNotification), object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.YWUserShouldLoginNotification, object: nil, userInfo: nil)
             completion(nil, false)
             return
         }
@@ -100,7 +100,7 @@ class YWNetworkManager: AFHTTPSessionManager {
         }) { (task, error) in
             //针对 403 处理token 过期
             if (task?.response as? HTTPURLResponse)?.statusCode == 403 {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: YWUserShouldLoginNotification), object: "bad Token", userInfo: nil)
+                NotificationCenter.default.post(name: NSNotification.Name.YWUserShouldLoginNotification, object: "bad Token", userInfo: nil)
             }
             print("网络请求错误\(error)")
             completion(nil, false)
@@ -128,7 +128,7 @@ class YWNetworkManager: AFHTTPSessionManager {
             //针对 403 处理token 过期
            if (task?.response as? HTTPURLResponse)?.statusCode == 403 {
              
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: YWUserShouldLoginNotification), object: "bad Token", userInfo: nil)
+            NotificationCenter.default.post(name: NSNotification.Name.YWUserShouldLoginNotification, object: "bad Token", userInfo: nil)
             }
             print("网络请求错误\(error)")
             completion(nil, false)

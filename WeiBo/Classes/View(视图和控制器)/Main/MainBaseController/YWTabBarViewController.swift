@@ -25,7 +25,7 @@ class YWTabBarViewController: UITabBarController {
         steupNewfeatureView()
 
         //注册通知
-        NotificationCenter.default.addObserver(self, selector: #selector(userLogin), name: NSNotification.Name(rawValue: YWUserShouldLoginNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userLogin), name: NSNotification.Name.YWUserShouldLoginNotification, object: nil)
     }
     
     deinit{
@@ -103,7 +103,6 @@ class YWTabBarViewController: UITabBarController {
     
     //设置所有子控制器
     private func steupChildControllers() {
-        
         let array: [[String:Any]] = [
             ["clsName":"YWHomeViewController","title":"首页","imageName":"home","visitorInfo" : ["imageName": "","message":"关注一些人，回这里看看有什么惊喜"]],
             ["clsName":"YWMessageViewController","title":"消息","imageName":"message_center","visitorInfo" : ["imageName": "visitordiscover_image_message","message":"登陆后，别人评论你的微博，发给你的消息，都会在这里收到通知"]],
@@ -292,5 +291,10 @@ extension YWTabBarViewController {
         //添加点击事件
         composeBtn.addTarget(self, action: #selector(composeBtnAction), for: .touchUpInside)
     }
+}
+
+extension NSNotification.Name {
+    static let YWUserShouldLoginNotification = NSNotification.Name(rawValue: "YWUserShouldLoginNotification")
+    static let YWuserLoginSuccessedNotification = NSNotification.Name(rawValue: "YWuserLoginSuccessedNotification")
 }
 

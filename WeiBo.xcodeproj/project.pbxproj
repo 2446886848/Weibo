@@ -205,6 +205,7 @@
 		7BED02D81DBBBDAE00D35C36 /* YWComposeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YWComposeTextView.swift; sourceTree = "<group>"; };
 		7D2E65A911091A979CDE5DCF /* Pods_WeiBo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeiBo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D57AB3C0828C0DF8959517D8 /* Pods-WeiBo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiBo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiBo/Pods-WeiBo.release.xcconfig"; sourceTree = "<group>"; };
+		E898AC141E2C6DB20048A754 /* WeiBo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeiBo.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,6 +561,7 @@
 		7BA186491D816B6D00E0BF3E /* WeiBo */ = {
 			isa = PBXGroup;
 			children = (
+				E898AC141E2C6DB20048A754 /* WeiBo.entitlements */,
 				7B73358B1D92713F006FEFBC /* Classes */,
 				7BA1864A1D816B6D00E0BF3E /* AppDelegate.swift */,
 				7B1043441D827CBE008D30BB /* WeiBo-Bridge.h */,
@@ -627,12 +629,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7BA1866F1D816B6D00E0BF3E /* Build configuration list for PBXNativeTarget "WeiBo" */;
 			buildPhases = (
+				C9D9A1C162CEC16ACBD2CF27 /* 📦 Check Pods Manifest.lock */,
 				79E695CB9172D95196F87044 /* [CP] Check Pods Manifest.lock */,
 				7BA186431D816B6D00E0BF3E /* Sources */,
 				7BA186441D816B6D00E0BF3E /* Frameworks */,
 				7BA186451D816B6D00E0BF3E /* Resources */,
 				2300B8428C6B2A38BFA3D6EA /* [CP] Embed Pods Frameworks */,
 				4F876B2D16250F11776CBD49 /* [CP] Copy Pods Resources */,
+				ED24AD14B0398D7913AE4397 /* 📦 Embed Pods Frameworks */,
+				7C2A57533CF912B9EBF5FE23 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -692,8 +697,16 @@
 				TargetAttributes = {
 					7BA186461D816B6D00E0BF3E = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 7DDW7FQJ8R;
+						DevelopmentTeam = 9TPVW548GM;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					7BA1865A1D816B6D00E0BF3E = {
 						CreatedOnToolsVersion = 8.0;
@@ -810,6 +823,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7C2A57533CF912B9EBF5FE23 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeiBo/Pods-WeiBo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9D9A1C162CEC16ACBD2CF27 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ED24AD14B0398D7913AE4397 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeiBo/Pods-WeiBo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1016,8 +1074,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = WeiBo/WeiBo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7DDW7FQJ8R;
+				DEVELOPMENT_TEAM = 9TPVW548GM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WeiBo/Classes/Utils(工具)",
@@ -1025,7 +1084,7 @@
 				INFOPLIST_FILE = WeiBo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.yaowei.WeiBo;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.walenWeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WeiBo/WeiBo-Bridge.h";
 				SWIFT_VERSION = 3.0;
@@ -1039,8 +1098,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = WeiBo/WeiBo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7DDW7FQJ8R;
+				DEVELOPMENT_TEAM = 9TPVW548GM;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WeiBo/Classes/Utils(工具)",
@@ -1048,7 +1108,7 @@
 				INFOPLIST_FILE = WeiBo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.yaowei.WeiBo;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.walenWeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WeiBo/WeiBo-Bridge.h";
 				SWIFT_VERSION = 3.0;

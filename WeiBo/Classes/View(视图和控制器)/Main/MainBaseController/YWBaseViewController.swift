@@ -35,7 +35,7 @@ class YWBaseViewController: UIViewController {
         //判断是否登录 登录再加载数据
         YWNetworkManager.shared.userLogon ? loadData() :()
         //注册登录成功通知
-        NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess), name: NSNotification.Name(rawValue: YWuserLoginSuccessedNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess), name: NSNotification.Name.YWuserLoginSuccessedNotification, object: nil)
         
     }
     
@@ -76,7 +76,7 @@ extension YWBaseViewController {
         
         print("用户登录")
         //发送通知
-        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: YWUserShouldLoginNotification), object: nil, userInfo: nil))
+        NotificationCenter.default.post(Notification(name: Notification.Name.YWUserShouldLoginNotification, object: nil, userInfo: nil))
     }
     
     @objc fileprivate func register() {

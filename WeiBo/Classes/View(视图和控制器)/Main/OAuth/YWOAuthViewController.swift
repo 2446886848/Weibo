@@ -103,7 +103,7 @@ extension YWOAuthViewController: UIWebViewDelegate {
             if isSuccess {
                 // SVProgressHUD.showInfo(withStatus: "登录成功")
                 self.backAction()
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: YWuserLoginSuccessedNotification), object: nil, userInfo: nil)
+                NotificationCenter.default.post(name: NSNotification.Name.YWuserLoginSuccessedNotification, object: nil, userInfo: nil)
             } else{
                 
                 SVProgressHUD.showInfo(withStatus: "网络请求失败")
